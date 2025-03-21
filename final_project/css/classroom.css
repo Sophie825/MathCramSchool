@@ -1,0 +1,73 @@
+/* 全局設置 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F7F8FA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 頁首設置 */
+.header {
+    background-color: #577399;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 主內容區域 */
+.management-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 1200px;
+    text-align: center;
+}
+
+/* 卡片樣式 */
+.option-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.option-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.option-card p {
+    font-size: 1em;
+    margin: 5px 0;
+    color: #666;
+}
+
+/* 底部 Footer */
+footer {
+    background-color: #BDD5EA;
+    color: #577399;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}

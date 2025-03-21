@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 教師資料</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- 引入 Chosen 樣式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo"><a href="web.html">BEST MATH</a></div>
+            <button class="login-button"><a href="web.html">登出</a></button>
+        </header>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a href="student.html">學生資料</a></li>
+                <li><a href="teacher.html">教師資料</a></li>
+                <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
+                <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
+                <li><a href="audit.html">試聽資料</a></li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <main class="content">
+            <div class="content-header">
+                <h1>教師資料</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜尋教師資料">
+                    <button class="search-button">搜尋</button>
+                </div>
+                <button id="createButton" class="create-button">+ 新增</button>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>姓名</th>
+                        <th>電話</th>
+                        <th>地址</th>
+                        <th>班級</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>t0001</td>
+                        <td>劉銘傳</td>
+                        <td>0928494839</td>
+                        <td>台北市中正區徐州路2號</td>
+                        <td>高一A班</td>
+                        <td><button class="edit-button" data-type="teacher">編輯</button></td>
+                        <td><button class="delete-button" data-type="teacher">刪除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- 新增教師資料彈出視窗 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeCreateModal" class="close">&times;</span>
+            <h2>新增教師資料</h2>
+            <form id="createTeacherForm">
+                <input type="text" id="name" name="name" required placeholder="輸入教師姓名">
+                <input type="tel" id="tel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="address" name="address" required placeholder="輸入地址">
+                <!-- 班級選擇 (多選) -->
+                <select id="class" name="class" multiple class="chosen-select" required data-placeholder="選擇班級">
+                    <option value="高一A班">高一A班</option>
+                    <option value="高一B班">高一B班</option>
+                    <option value="高一加強班">高一加強班</option>
+                    <option value="高二A班">高二A班</option>
+                    <option value="高二B班">高二B班</option>
+                    <option value="高二加強班">高二加強班</option>
+                    <option value="高三班">高三班</option>
+                    <option value="高三加強班">高三加強班</option>
+                </select>
+                <br>
+                <button type="submit">確認新增</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 編輯教師資料彈出視窗 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close">&times;</span>
+            <h2>編輯教師資料</h2>
+            <form id="editTeacherForm">
+                <input type="text" id="editName" name="name" required placeholder="輸入教師姓名">
+                <input type="tel" id="editTel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="editAddress" name="address" required placeholder="輸入地址">
+                <!-- 班級選擇 (多選) -->
+                <select id="editClass" name="class" multiple class="chosen-select" required required data-placeholder="選擇班級">
+                    <option value="高一A班">高一A班</option>
+                    <option value="高一B班">高一B班</option>
+                    <option value="高一加強班">高一加強班</option>
+                    <option value="高二A班">高二A班</option>
+                    <option value="高二B班">高二B班</option>
+                    <option value="高二加強班">高二加強班</option>
+                    <option value="高三班">高三班</option>
+                    <option value="高三加強班">高三加強班</option>
+                </select>
+                <br>
+                <button type="submit">確認更新</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 引入 jQuery 和 Chosen 的 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <script>
+        // 初始化 Chosen 插件
+        $(document).ready(function () {
+            $(".chosen-select").chosen({
+                no_results_text: "找不到符合的班級",
+                width: "100%"
+            });
+        });
+
+        // 新增教師彈窗
+        $("#createButton").on("click", function () {
+            $("#createModal").show();
+        });
+
+        $("#closeCreateModal").on("click", function () {
+            $("#createModal").hide();
+        });
+
+        // 編輯教師彈窗
+        $(".edit-button").on("click", function () {
+            const teacherId = $(this).data("id");
+            const teacherData = getTeacherDataById(teacherId);
+
+            $("#editName").val(teacherData.name);
+            $("#editTel").val(teacherData.tel);
+            $("#editAddress").val(teacherData.address);
+            $("#editClass").val(teacherData.class).trigger("chosen:updated");
+            $("#editModal").show();
+        });
+
+        $("#closeEditModal").on("click", function () {
+            $("#editModal").hide();
+        });
+
+        // 模擬 API 獲取教師資料
+        function getTeacherDataById(id) {
+            return {
+                name: "劉銘傳",
+                tel: "0928494839",
+                address: "台北市中正區徐州路2號",
+                class: ["高一A班", "高二加強班"]
+            };
+        }
+    </script>
+</body>
+</html>

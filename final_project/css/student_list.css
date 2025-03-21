@@ -1,0 +1,106 @@
+/* 通用設置 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F7F8FA;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 頁首樣式 */
+.header {
+    background-color: #577399;
+    height: 50px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.header .logo a:hover {
+    text-decoration: underline;
+}
+
+/* 表格樣式 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.data-table thead {
+    background-color: #BDD5EA;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.data-table th {
+    font-size: 1em;
+    color: #577399;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* 標題樣式 */
+h2 {
+    text-align: center;
+    color: #46688A;
+    margin-top: 20px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* 按鈕樣式 */
+button {
+    background-color: #577399;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #46688A;
+    transform: translateY(-3px);
+}
+
+/* 無學生資料消息 */
+.no-data-message {
+    text-align: center;
+    color: #999;
+    font-size: 1.2em;
+    margin-top: 20px;
+}

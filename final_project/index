@@ -1,0 +1,40 @@
+tutoring_management_system/
+│   # 1建檔 2架構 3修正
+├── web.php                  # 主頁面 (登入頁面) 12 web
+├── admin_login.php            # 登入邏輯處理 123 admin login
+├── logout.php                 # 登出邏輯處理 123 
+├── student_dashboard.php      # 學生主頁面 123 
+├── mentor_dashboard.php       # 輔導老師主頁面 123 
+├── admin_main.php             # 行政人員主頁面 123 
+│
+├── db/
+│   ├── db.php                 # 資料庫連線設定 
+│
+├── modules/
+│   ├── student.php            # 學生功能 (新增、查詢、更新) 123    student 修正搜尋跟修改的邏輯done
+│   ├── teacher.php            # 教師功能 (新增、查詢、更新) 123 teacher
+│   ├── mentor.php             # Mentor 功能 (新增、查詢、更新) 123 mentor 修正判斷mentor是否on 並且顯示其shift
+│   ├── audit.php              # Audit 功能 (新增、查詢、更新) 123 audit
+│   ├── classroom.php          # 教室管理 (查看教室)  123 class然後點擊展開是student list
+│   ├── student_list.php       # 列出上該課程的學生 123 student list
+│   ├── mentor_shift.php       # 輔導老師班表管理 123 mentor shift
+│
+├── templates/
+│   ├── footer.php             # 頁尾模板 1
+│
+├── css/
+│   └── style.css              # CSS 樣式表 1
+│
+│
+└── sql/
+    └── create_tables.sql      # 資料表建立 SQL 腳本 1
+
+
+
+; 我要：新增class然後換到workers頁面課程管理那邊 可以查詢修改新增 已新增
+; 給modules裡面的html相對應的css  以新增全部
+; edit_mentor_shift 可以更改的然後放到admin main裡面 已修正
+; 然後應該就可以睡了...
+
+
+

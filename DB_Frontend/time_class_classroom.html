@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 班級教室時間表</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo"><a href="web.html">BEST MATH</a></div>
+            <button class="login-button"><a href="web.html">登出</a></button>
+        </header>
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a href="student.html">學生資料</a></li>
+                <li><a href="teacher.html">教師資料</a></li>
+                <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
+                <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
+                <li><a href="audit.html">試聽資料</a></li>
+            </ul>
+        </div>
+        <main class="content">
+            <div class="content-header">
+                <h1>班級教室時間表</h1>
+                <button id="createButton" class="create-button">+ 新增</button>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>時間</th>
+                        <th>班級</th>
+                        <th>教室</th>
+                        
+                        <th>編輯</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleTable">
+                    <tr>
+                        <td>星期一</td>
+                        <td>班級A</td>
+                        <td>A01</td>
+                        
+                        <td><button class="edit-button" data-day="星期一">編輯</button></td>
+                        <td><button class="delete-button" data-day="星期一">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期二</td>
+                        <td>班級B</td>
+                        <td>B01</td>
+                        
+                        <td><button class="edit-button" data-day="星期二">編輯</button></td>
+                        <td><button class="delete-button" data-day="星期二">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期三</td>
+                        <td>班級B</td>
+                        <td>B01</td>
+                        
+                        <td><button class="edit-button" data-day="星期二">編輯</button></td>
+                        <td><button class="delete-button" data-day="星期二">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期四</td>
+                        <td>班級B</td>
+                        <td>B01</td>
+                        
+                        <td><button class="edit-button" data-day="星期二">編輯</button></td>
+                        <td><button class="delete-button" data-day="星期二">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期五</td>
+                        <td>班級B</td>
+                        <td>B01</td>
+                        
+                        <td><button class="edit-button" data-day="星期二">編輯</button></td>
+                        <td><button class="delete-button" data-day="星期二">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期六早上</td>
+                        <td>班級B</td>
+                        <td>B01</td>
+                        
+                        <td><button class="edit-button" data-day="星期二">編輯</button></td>
+                        <td><button class="delete-button" data-day="星期二">刪除</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期六下午</td>
+                        <td>班級B</td>
+                        <td>B01</td>
+                        
+                        <td><button class="edit-button" data-day="星期二">編輯</button></td>
+                        <td><button class="delete-button" data-day="星期二">刪除</button></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- 新增排班彈窗 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeCreateModal" class="close">&times;</span>
+            <h2>新增班級教室時間</h2>
+            <form id="createShiftForm">
+                <select id="day" name="day" required>
+                    <option value="">選擇時間</option>
+                    <option value="星期一">星期一</option>
+                    <option value="星期二">星期二</option>
+                    <option value="星期三">星期三</option>
+                </select>
+                
+                <select id="class" name="class" required>
+                    <option value="">選擇班級</option>
+                    <option value="班級A">班級A</option>
+                    <option value="班級B">班級B</option>
+                    <option value="班級C">班級C</option>
+                </select>
+                <select id="room" name="room" required>
+                    <option value="">選擇教室</option>
+                    <option value="A01">A01</option>
+                    <option value="B01">B01</option>
+                    <option value="C01">C01</option>
+                </select>
+                
+                </br>
+                <button type="submit">確認新增</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 編輯排班彈窗 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close">&times;</span>
+            <h2>編輯班級教室時間</h2>
+            <form id="editShiftForm">
+                <select id="day" name="day" required>
+                    <option value="">選擇時間</option>
+                    <option value="星期一">星期一</option>
+                    <option value="星期二">星期二</option>
+                    <option value="星期三">星期三</option>
+                </select>
+                
+                <select id="editClass" name="class" required>
+                    <option value="">選擇班級</option>
+                    <option value="班級A">班級A</option>
+                    <option value="班級B">班級B</option>
+                    <option value="班級C">班級C</option>
+                </select>
+                <select id="editRoom" name="room" required>
+                    <option value="">選擇教室</option>
+                    <option value="A01">A01</option>
+                    <option value="B01">B01</option>
+                    <option value="C01">C01</option>
+                </select>
+                
+                </br>
+                <button type="submit">確認更新</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#createButton").on("click", function () {
+                $("#createModal").show();
+            });
+
+            $("#closeCreateModal, #closeEditModal").on("click", function () {
+                $(".modal").hide();
+            });
+
+            $(".edit-button").on("click", function () {
+                const day = $(this).data("day");
+                const shiftData = getShiftDataByDay(day);
+                $("#editDay").val(day);
+                $("#editTeacher").val(shiftData.teacher);
+                $("#editClass").val(shiftData.class);
+                $("#editRoom").val(shiftData.room);
+                $("#editModal").show();
+            });
+        });
+
+        function getShiftDataByDay(day) {
+            const data = {
+                "星期一": { class: "班級A", teacher: "黃芷瑄", room: "A01" },
+                "星期二": {  class: "班級B", teacher: "蔡明和", room: "B01" },
+            };
+            return data[day] || { teacher: "", class: "", room: "" };
+        }
+    </script>
+</body>
+</html>

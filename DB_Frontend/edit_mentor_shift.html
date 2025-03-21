@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 輔導老師班表</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- 引入 Chosen 樣式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo"><a href="web.html">BEST MATH</a></div>
+            <button class="login-button"><a href="web.html">登出</a></button>
+        </header>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a href="student.html">學生資料</a></li>
+                <li><a href="teacher.html">教師資料</a></li>
+                <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
+                <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
+                <li><a href="audit.html">試聽資料</a></li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <main class="content">
+            <div class="content-header">
+                <h1>輔導老師班表</h1>
+                <button id="createButton" class="create-button">+ 新增</button>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>時間</th>
+                        <th>輔導老師</th>
+                        <th>編輯</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>星期日</td>
+                        <td>黃芷瑄, 蔡明和</td>
+                        <td><button class="edit-button" data-day="星期日">編輯</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期一</td>
+                        <td>黃芷瑄, 蔡明和</td>
+                        <td><button class="edit-button" data-day="星期一">編輯</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期二</td>
+                        <td>黃芷瑄, 蔡明和</td>
+                        <td><button class="edit-button" data-day="星期二">編輯</button></td>
+                    </tr>
+                    <tr>
+                        <td>星期三</td>
+                        <td>黃芷瑄, 蔡明和</td>
+                        <td><button class="edit-button" data-day="星期三">編輯</button></td>
+                    </tr><tr>
+                        <td>星期四</td>
+                        <td>黃芷瑄, 蔡明和</td>
+                        <td><button class="edit-button" data-day="星期四">編輯</button></td>
+                    </tr><tr>
+                        <td>星期五</td>
+                        <td>黃芷瑄, 蔡明和</td>
+                        <td><button class="edit-button" data-day="星期五">編輯</button></td>
+                    </tr><tr>
+                        <td>星期六</td>
+                        <td>黃芷瑄, 蔡明和</td>
+                        <td><button class="edit-button" data-day="星期六">編輯</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- 新增班表彈出視窗 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeCreateModal" class="close">&times;</span>
+            <h2>新增班表</h2>
+            <form id="createShiftForm">
+                <select id="day" name="day" required>
+                    <option value="">選擇日期</option>
+                    <option value="星期一">星期一</option>
+                    <option value="星期二">星期二</option>
+                    <option value="星期三">星期三</option>
+                    <option value="星期四">星期四</option>
+                    <option value="星期五">星期五</option>
+                    <option value="星期六">星期六</option>
+                    <option value="星期日">星期日</option>
+                </select>
+                <select id="teachers" name="teachers" multiple class="chosen-select" required data-placeholder="選擇輔導老師">
+                    <option value="黃芷瑄">黃芷瑄</option>
+                    <option value="蔡明和">蔡明和</option>
+                    <option value="李曉華">李曉華</option>
+                    <option value="張宏偉">張宏偉</option>
+                </select>
+                <br>
+                <button type="submit">確認新增</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 編輯班表彈出視窗 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close">&times;</span>
+            <h2>編輯班表</h2>
+            <form id="editShiftForm">
+                <input type="text" id="editDay" name="day" disabled>
+                <select id="editTeachers" name="teachers" multiple class="chosen-select" required data-placeholder="選擇輔導老師">
+                    <option value="黃芷瑄">黃芷瑄</option>
+                    <option value="蔡明和">蔡明和</option>
+                    <option value="李曉華">李曉華</option>
+                    <option value="張宏偉">張宏偉</option>
+                </select>
+                <br>
+                <button type="submit">確認更新</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 引入 jQuery 和 Chosen 的 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    <script>
+        // 初始化 Chosen 插件
+        $(document).ready(function () {
+            $(".chosen-select").chosen({
+                no_results_text: "找不到符合的老師",
+                width: "100%"
+            });
+        });
+
+        // 新增班表彈窗
+        $("#createButton").on("click", function () {
+            $("#createModal").show();
+        });
+
+        $("#closeCreateModal").on("click", function () {
+            $("#createModal").hide();
+        });
+
+        // 編輯班表彈窗
+        $(".edit-button").on("click", function () {
+            const day = $(this).data("day");
+            const shiftData = getShiftDataByDay(day);
+
+            $("#editDay").val(day);
+            $("#editTeachers").val(shiftData.teachers).trigger("chosen:updated");
+            $("#editModal").show();
+        });
+
+        $("#closeEditModal").on("click", function () {
+            $("#editModal").hide();
+        });
+
+        // 模擬 API 獲取班表資料
+        function getShiftDataByDay(day) {
+            const data = {
+                "星期一": { teachers: ["黃芷瑄", "蔡明和"] },
+                "星期二": { teachers: ["黃芷瑄", "蔡明和"] }
+            };
+            return data[day];
+        }
+    </script>
+</body>
+</html>

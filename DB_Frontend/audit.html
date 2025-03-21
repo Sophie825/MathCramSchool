@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 試聽資料</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo"><a href="web.html">BEST MATH</a></div>
+            <button class="login-button"><a href="web.html">登出</a></button>
+        </header>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a href="student.html">學生資料</a></li>
+                <li><a href="teacher.html">教師資料</a></li>
+                <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
+                <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
+                <li><a href="audit.html">試聽資料</a></li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <main class="content">
+            <div class="content-header">
+                <h1>試聽資料</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜尋試聽資料">
+                    <button class="search-button">搜尋</button>
+                </div>
+                <button id="createButton" class="create-button">+ 新增</button>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>SCHOOL</th>
+                        <th>GRADE</th>
+                        <th>TEL</th>
+                        <th>ADDRESS</th>
+                        <th>STATUS</th>
+                        <th>EDIT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>20230204</td>
+                        <td>陳雅萍</td>
+                        <td>北一女中</td>
+                        <td>二年級</td>
+                        <td>0928494839</td>
+                        <td>台北市中正區徐州路2號</td>
+                        <td>已離開</td>
+                        <td><button class="edit-button" data-id="20230204">編輯</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- 新增試聽資料彈出視窗 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeCreateModal" class="close">&times;</span>
+            <h2>新增試聽資料</h2>
+            <form id="createAuditForm">
+                <input type="text" id="name" name="name" required placeholder="輸入學生姓名">
+                <input type="text" id="school" name="school" required placeholder="輸入學校">
+                <select id="grade" name="grade" required>
+                    <option value="" disabled selected>選擇年級</option>
+                    <option value="一年級">一年級</option>
+                    <option value="二年級">二年級</option>
+                    <option value="三年級">三年級</option>
+                </select>
+                <input type="tel" id="tel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="address" name="address" required placeholder="輸入地址">
+                <br>
+                <button type="submit">確認新增</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 編輯試聽資料彈出視窗 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close">&times;</span>
+            <h2>編輯試聽資料</h2>
+            <form id="editAuditForm">
+                <input type="text" id="editName" name="name" required placeholder="輸入學生姓名">
+                <input type="text" id="editSchool" name="school" required placeholder="輸入學校">
+                <select id="editGrade" name="grade" required>
+                    <option value="" disabled selected>選擇年級</option>
+                    <option value="一年級">一年級</option>
+                    <option value="二年級">二年級</option>
+                    <option value="三年級">三年級</option>
+                </select>
+                <input type="tel" id="editTel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="editAddress" name="address" required placeholder="輸入地址">
+                <br>
+                <button type="submit">確認更新</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const createModal = document.getElementById('createModal');
+            const editModal = document.getElementById('editModal');
+            const closeCreateModal = document.getElementById('closeCreateModal');
+            const closeEditModal = document.getElementById('closeEditModal');
+
+            // 顯示新增視窗
+            document.getElementById('createButton').addEventListener('click', () => {
+                createModal.style.display = 'flex';
+            });
+
+            // 關閉新增視窗
+            closeCreateModal.addEventListener('click', () => {
+                createModal.style.display = 'none';
+            });
+
+            // 顯示編輯視窗
+            document.querySelector('table').addEventListener('click', (event) => {
+                if (event.target.classList.contains('edit-button')) {
+                    const auditId = event.target.dataset.id;
+                    const auditData = getAuditDataById(auditId);
+
+                    document.getElementById('editName').value = auditData.name;
+                    document.getElementById('editSchool').value = auditData.school;
+                    document.getElementById('editGrade').value = auditData.grade;
+                    document.getElementById('editTel').value = auditData.tel;
+                    document.getElementById('editAddress').value = auditData.address;
+                    editModal.style.display = 'flex';
+                }
+            });
+
+            // 關閉編輯視窗
+            closeEditModal.addEventListener('click', () => {
+                editModal.style.display = 'none';
+            });
+
+            // 提交新增試聽資料
+            document.getElementById('createAuditForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const newAudit = {
+                    name: this.name.value,
+                    school: this.school.value,
+                    grade: this.grade.value,
+                    tel: this.tel.value,
+                    address: this.address.value
+                };
+                console.log("新增試聽資料:", newAudit);
+                createModal.style.display = 'none'; // 隱藏彈窗
+            });
+
+            // 提交編輯試聽資料
+            document.getElementById('editAuditForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const updatedAudit = {
+                    name: this.name.value,
+                    school: this.school.value,
+                    grade: this.grade.value,
+                    tel: this.tel.value,
+                    address: this.address.value
+                };
+                console.log("更新試聽資料:", updatedAudit);
+                editModal.style.display = 'none'; // 隱藏彈窗
+            });
+        });
+
+        function getAuditDataById(id) {
+            return {
+                name: "陳雅萍",
+                school: "北一女中",
+                grade: "二年級",
+                tel: "0928494839",
+                address: "台北市中正區徐州路2號"
+            };
+        }
+    </script>
+</body>
+</html>

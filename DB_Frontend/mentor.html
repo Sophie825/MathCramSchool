@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 輔導老師資料</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo"><a href="web.html">BEST MATH</a></div>
+            <button class="login-button"><a href="web.html">登出</a></button>
+        </header>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a href="student.html">學生資料</a></li>
+                <li><a href="teacher.html">教師資料</a></li>
+                <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
+                <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
+                <li><a href="audit.html">試聽資料</a></li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <main class="content">
+            <div class="content-header">
+                <h1>輔導老師資料</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜尋教師資料">
+                    <button class="search-button">搜尋</button>
+                </div>
+                <button id="createButton" class="create-button">+ 新增</button>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>姓名</th>
+                        <th>電話</th>
+                        <th>地址</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>t0001</td>
+                        <td>劉銘傳</td>
+                        <td>0928494839</td>
+                        <td>台北市中正區徐州路2號</td>
+                        <td><button class="edit-button" data-id="t0001" data-type="mentor">編輯</button></td>
+                        <td><button class="delete-button" data-type="teacher">刪除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- 新增教師資料彈出視窗 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeCreateModal" class="close">&times;</span>
+            <h2>新增教師資料</h2>
+            <form id="createMentorForm">
+                <input type="text" id="name" name="name" required placeholder="輸入教師姓名">
+                <input type="tel" id="tel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="address" name="address" required placeholder="輸入地址">
+                <br>
+                <button type="submit">確認新增</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 編輯教師資料彈出視窗 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close">&times;</span>
+            <h2>編輯教師資料</h2>
+            <form id="editMentorForm">
+                <input type="text" id="editName" name="name" required placeholder="輸入教師姓名">
+                <input type="tel" id="editTel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="editAddress" name="address" required placeholder="輸入地址">
+            
+                <br>
+                <button type="submit">確認更新</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const createModal = document.getElementById('createModal');
+            const editModal = document.getElementById('editModal');
+            const closeCreateModal = document.getElementById('closeCreateModal');
+            const closeEditModal = document.getElementById('closeEditModal');
+
+            // 新增教師彈窗
+            document.getElementById('createButton').addEventListener('click', () => {
+                createModal.style.display = 'flex';
+            });
+
+            // 關閉新增視窗
+            closeCreateModal.addEventListener('click', () => {
+                createModal.style.display = 'none';
+            });
+
+            // 編輯教師彈窗
+            document.querySelector('table').addEventListener('click', (event) => {
+                if (event.target.classList.contains('edit-button')) {
+                    const mentorId = event.target.dataset.id;
+                    const mentorData = getMentorDataById(mentorId);
+
+                    document.getElementById('editName').value = mentorData.name;
+                    document.getElementById('editTel').value = mentorData.tel;
+                    document.getElementById('editAddress').value = mentorData.address;
+                    editModal.style.display = 'flex';
+                }
+            });
+
+            // 關閉編輯視窗
+            closeEditModal.addEventListener('click', () => {
+                editModal.style.display = 'none';
+            });
+
+            // 提交新增輔導老師資料
+            document.getElementById('createMentorForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const newMentor = {
+                    name: this.name.value,
+                    tel: this.tel.value,
+                    address: this.address.value
+                };
+                console.log("新增輔導老師資料:", newMentor);
+                createModal.style.display = 'none'; // 隱藏彈窗
+            });
+
+            // 提交編輯教師資料
+            document.getElementById('editMentorForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+                const updatedMentor = {
+                    name: this.name.value,
+                    tel: this.tel.value,
+                    address: this.address.value
+                };
+                console.log("更新輔導老師資料:", updatedMentor);
+                editModal.style.display = 'none'; // 隱藏彈窗
+            });
+        });
+
+        function getMentorDataById(id) {
+            return {
+                name: "劉銘傳",
+                tel: "0928494839",
+                address: "台北市中正區徐州路2號"
+            };
+        }
+    </script>
+</body>
+</html>

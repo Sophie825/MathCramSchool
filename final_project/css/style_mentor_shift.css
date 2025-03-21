@@ -1,0 +1,110 @@
+/* 全局設置 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F7F8FA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 頁首設置 */
+.header {
+    background-color: #577399;
+    height: 50px;
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+/* 主要容器設置 */
+.container {
+    margin-top: 70px;
+    padding: 20px;
+}
+
+/* 主內容標題 */
+h1 {
+    color: #46688A;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* 排班表的網格佈局 */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+/* 每個班次的卡片樣式 */
+.option-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+}
+
+.option-card h3 {
+    font-size: 1.5em;
+    color: #46688A;
+    margin-bottom: 20px;
+}
+
+/* 導師按鈕樣式 */
+.teachers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mentor_name {
+    background-color: #577399;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mentor_name:hover {
+    background-color: #46688A;
+    transform: translateY(-3px);
+}
+
+/* 頁尾樣式 */
+footer {
+    background-color: #BDD5EA;
+    text-align: center;
+    padding: 10px;
+    color: #577399;
+    font-size: 0.9em;
+    margin-top: auto;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,195 @@
+ /* 全局設置 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F7F8FA;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 頁首設置 */
+.header {
+    background-color: #577399;
+    height: 50px;
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.header .logo a:hover {
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: #BDD5EA;
+    color: #577399;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-button a {
+    text-decoration: none;
+    color: #577399;
+}
+
+/* 側邊欄 */
+.sidebar {
+    width: 250px;
+    background-color: #46688A;
+    height: 100%;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #577399;
+}
+
+/* 主內容 */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    margin-top: 70px;
+}
+
+/* 表格樣式 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #46688A; /* 更明顯的表格邊框 */
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #46688A; /* 單元格分隔線 */
+}
+
+.data-table th {
+    background-color: #46688A;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #F7F8FA; /* 偶數行背景 */
+}
+
+.data-table tr:hover {
+    background-color: #ddd; /* 懸停行高亮 */
+}
+
+/* 按鈕樣式 */
+.data-table td button {
+    background-color: #577399;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.data-table td button:hover {
+    background-color: #3a5776;
+    transform: translateY(-2px);
+}
+
+.create-button {
+    background-color: #577399;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.create-button:hover {
+    background-color: #46688A;
+}
+
+.search-bar input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    background-color: #46688A;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-bar button:hover {
+    background-color: #3a5776;
+}
+
+/* Footer */
+footer {
+    background-color: #BDD5EA;
+    text-align: center;
+    padding: 10px;
+    color: #577399;
+    font-size: 0.9em;
+    width: 100%; /* 滿版 Footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: auto; /* 確保 Footer 固定在底部 */
+}

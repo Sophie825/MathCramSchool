@@ -1,0 +1,110 @@
+/* styles.css */
+
+/* 調整 body 的樣式 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #F7F8FA;
+}
+
+/* Header */
+.header {
+    background-color: #577399;
+    height: 50px;
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.header .logo a:hover {
+    text-decoration: underline; /* 滑鼠懸停時加底線 */
+}
+
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 20px;
+    align-items: center;
+}
+
+/* Content */
+.content h1 {
+    color: #577399;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+/* 新增樣式 - 卡片效果 */
+.option-card {
+    background-color: #ffffff;
+    border: 1px solid #d1dce8;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+    width: 150px;
+}
+
+.option-card h3 {
+    font-size: 16;
+    margin-bottom: 20px;
+    /* color: #46688a; */
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 按鈕樣式 */
+.mentor_name {
+    background-color: #577399;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
+
+    
+}

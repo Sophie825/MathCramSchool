@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 班級資料</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <div class="logo"><a href="web.html">BEST MATH</a></div>
+        <button class="login-button"><a href="web.html">登出</a></button>
+    </header>
+
+    <div class="sidebar">
+        <ul class="menu">
+            <li><a href="student.html">學生資料</a></li>
+            <li><a href="teacher.html">教師資料</a></li>
+            <li><a href="mentor.html">輔導老師資料</a></li>
+            <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
+            <li><a href="class.html">班級資料</a></li>
+            <li><a href="time_class_classroom.html">班級教室時間表</a></li>
+            <li><a href="audit.html">試聽資料</a></li>
+        </ul>
+    </div>
+
+    <main class="content">
+        <div class="content-header">
+            <h1>班級資料</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜尋班級資料">
+                <button id="searchButton" class="search-button">搜尋</button>
+            </div>
+            <button id="createButton" class="create-button">+ 新增</button>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>班級名稱</th>
+                    <th>上課時間</th>
+                    <th>授課老師</th>
+                    <th>教室</th>
+                    <th>人數</th>
+                    <th>學生資料</th>
+                    <th>編輯</th>
+                    <th>刪除</th>
+                </tr>
+            </thead>
+            <tbody id="classTableBody">
+                <!-- 班級資料會自動填充 -->
+                <tr>
+                    <td>高一A班</td>
+                    <td>周一 09:00-11:00</td>
+                    <td>張老師</td>
+                    <td>101</td>
+                    <td>30人</td>
+                    <td><button class="check-button" onclick="location.href='student_list.html'">查看學生名單</button></td>
+                    <td><button class="edit-button" data-id="classA">編輯</button></td>
+                    <td><button class="delete-button" data-id="classA">刪除</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+<!-- 新增班級資料彈出視窗 -->
+<div id="createModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="closeCreateModal" class="close">&times;</span>
+        <h2>新增班級資料</h2>
+        <form id="createForm">
+            <input type="text" id="name" name="name" placeholder="班級名稱" required>
+            <input type="text" id="time" name="time" placeholder="上課時間" required>
+            <input type="text" id="teacher" name="teacher" placeholder="授課老師" required>
+            <select id="classroom" name="classroom" required>
+                <option value="" disabled selected>選擇教室</option>
+                <option value="r_101">101</option>
+                <option value="r_102">102</option>
+                <option value="r_103">103</option>
+            </select>
+            </br>
+            <button type="submit">確認新增</button>
+        </form>
+    </div>
+</div>
+
+<!-- 編輯班級資料彈出視窗 -->
+<div id="editModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="closeEditModal" class="close">&times;</span>
+        <h2>編輯班級資料</h2>
+        <form id="editClassForm">
+            <input type="text" id="editName" name="name" placeholder="班級名稱" required>
+            <input type="text" id="editTime" name="time" placeholder="上課時間" required>
+            <input type="text" id="editTeacher" name="teacher" placeholder="授課老師" required>
+            <select id="editClassroom" name="classroom" required>
+                <option value="" disabled selected>選擇教室</option>
+                <option value="r_101">101</option>
+                <option value="r_102">102</option>
+                <option value="r_103">103</option>
+            </select>
+            </br>
+            <button type="submit">確認更新</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const createModal = document.getElementById('createModal');
+    const editModal = document.getElementById('editModal');
+
+    // 開啟新增彈出視窗
+    document.getElementById('createButton').addEventListener('click', () => {
+        createModal.style.display = 'flex';
+    });
+    
+    // 關閉新增視窗
+    document.querySelector('#closeCreateModal').addEventListener('click', () => {
+        createModal.style.display = 'none';
+    });
+
+    // 提交新增班級資料
+    document.getElementById('createForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const newClass = {
+            name: e.target.name.value,
+            time: e.target.time.value,
+            teacher: e.target.teacher.value,
+            classroom: e.target.classroom.value
+        };
+
+        console.log('新增班級資料：', newClass);
+        createModal.style.display = 'none';
+    });
+
+    // 編輯視窗打開邏輯
+    document.querySelector('table').addEventListener('click', (e) => {
+        if (e.target.classList.contains('edit-button')) {
+            editModal.style.display = 'flex';
+
+            document.getElementById('editName').value = "高一A班";
+            document.getElementById('editTime').value = "周一 09:00-11:00";
+            document.getElementById('editTeacher').value = "張老師";
+            document.getElementById('editClassroom').value = "101";
+        }
+    });
+
+    document.getElementById('closeEditModal').addEventListener('click', () => {
+        editModal.style.display = 'none';
+    });
+
+    document.getElementById('editClassForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const updatedData = {
+            name: e.target.name.value,
+            time: e.target.time.value,
+            teacher: e.target.teacher.value,
+            classroom: e.target.classroom.value
+        };
+
+        console.log('更新班級資料：', updatedData);
+        editModal.style.display = 'none';
+    });
+});
+</script>
+
+</body>
+</html>

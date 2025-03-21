@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Math - 學生資料</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- 引入 Chosen 樣式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo"><a href="web.html">BEST MATH</a></div>
+            <button class="login-button"><a href="web.html">登出</a></button>
+        </header>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="menu">
+                <li><a href="student.html">學生資料</a></li>
+                <li><a href="teacher.html">教師資料</a></li>
+                <li><a href="mentor.html">輔導老師資料</a></li>
+                <li><a href="edit_mentor_shift.html">輔導老師班表</a></li>
+                <li><a href="class.html">班級資料</a></li>
+                <li><a href="time_class_classroom.html">班級教室時間表</a></li>
+                <li><a href="audit.html">試聽資料</a></li>
+            </ul>
+        </div>
+        <!-- Main Content -->
+        <main class="content">
+            <div class="content-header">
+                <h1>學生資料</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜尋學生資料">
+                    <button class="search-button">搜尋</button>
+                </div>
+                <button id="createButton" class="create-button">+ 新增</button>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>姓名</th>
+                        <th>學校</th>
+                        <th>年級</th>
+                        <th>電話</th>
+                        <th>地址</th>
+                        <th>班級</th>
+                        <th>家長</th>
+                        <th>家長電話</th>
+                        <th>編輯</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>20230204</td>
+                        <td>陳雅萍</td>
+                        <td>北一女中</td>
+                        <td>二年級</td>
+                        <td>0928494839</td>
+                        <td>台北市中正區徐州路2號</td>
+                        <td>高一A班</td>
+                        <td>陳淑華</td>
+                        <td>0984987654</td>
+                        <td><button class="edit-button" data-type="student">編輯</button></td>
+                        <td><button class="delete-button" data-type="student">刪除</button></td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- 新增學生資料彈出視窗 -->
+    <div id="createModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeCreateModal" class="close">&times;</span>
+            <h2>新增學生資料</h2>
+            <form id="createStudentForm">
+                <input type="text" id="name" name="name" required placeholder="輸入學生姓名">
+                <input type="text" id="school" name="school" required placeholder="輸入學校">
+                <select id="grade" name="grade" required>
+                    <option value="" disabled selected>選擇年級</option>
+                    <option value="一年級">一年級</option>
+                    <option value="二年級">二年級</option>
+                    <option value="三年級">三年級</option>
+                </select>
+                <input type="tel" id="tel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="address" name="address" required placeholder="輸入地址">
+                
+                <!-- 班級選擇部分，加入 Chosen 插件以支援多選 -->
+                <select id="class" name="class" multiple class="chosen-select" required required data-placeholder="選擇班級">
+                    <option value="高一A班">高一A班</option>
+                    <option value="高一B班">高一B班</option>
+                    <option value="高一加強班">高一加強班</option>
+                    <option value="高二A班">高二A班</option>
+                    <option value="高二B班">高二B班</option>
+                    <option value="高二加強班">高二加強班</option>
+                    <option value="高三班">高三班</option>
+                    <option value="高三加強班">高三加強班</option>
+                </select>
+
+                <input type="text" id="parent" name="parent" required placeholder="輸入家長姓名">
+                <input type="tel" id="parentTel" name="parentTel" required placeholder="輸入家長電話">
+                <br>
+                <button type="submit">確認新增</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 編輯學生資料彈出視窗 -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeEditModal" class="close">&times;</span>
+            <h2>編輯學生資料</h2>
+            <form id="editStudentForm">
+                <input type="text" id="name" name="name" required placeholder="輸入學生姓名">
+                <input type="text" id="school" name="school" required placeholder="輸入學校">
+                <select id="grade" name="grade" required>
+                    <option value="" disabled selected>選擇年級</option>
+                    <option value="一年級">一年級</option>
+                    <option value="二年級">二年級</option>
+                    <option value="三年級">三年級</option>
+                </select>
+                <input type="tel" id="tel" name="tel" required placeholder="輸入電話">
+                <input type="text" id="address" name="address" required placeholder="輸入地址">
+                <select id="class" name="class" multiple class="chosen-select" required required data-placeholder="選擇班級">
+                    <option value="高一A班">高一A班</option>
+                    <option value="高一B班">高一B班</option>
+                    <option value="高一加強班">高一加強班</option>
+                    <option value="高二A班">高二A班</option>
+                    <option value="高二B班">高二B班</option>
+                    <option value="高二加強班">高二加強班</option>
+                    <option value="高三班">高三班</option>
+                    <option value="高三加強班">高三加強班</option>
+                </select>
+                <input type="text" id="parent" name="parent" required placeholder="輸入家長姓名">
+                <input type="tel" id="parentTel" name="parentTel" required placeholder="輸入家長電話">
+                <br>
+                <button type="submit">確認更新</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 引入 jQuery 和 Chosen 的 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+    
+    <script>
+        // 啟用 Chosen 插件
+        $(document).ready(function () {
+            $(".chosen-select").chosen({
+                no_results_text: "找不到符合的班級", // 無結果時顯示的文字
+                width: "100%" // 調整寬度為 100%
+            });
+        });
+
+        // 假設的函數來獲取學生資料
+        function getStudentDataById(studentId) {
+            // 假設您會從後端獲取資料，這裡是靜態模擬數據
+            return {
+                name: "陳雅萍",
+                school: "北一女中",
+                grade: "二年級",
+                tel: "0928494839",
+                address: "台北市中正區徐州路2號",
+                class: ["高一A班"],
+                parent: "陳淑華",
+                parentTel: "0984987654"
+            };
+        }
+    </script>
+    <script src="script_create.js"></script>
+</body>
+</html>

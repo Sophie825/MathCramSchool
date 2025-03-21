@@ -1,0 +1,125 @@
+/* Reset some default styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F7F8FA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 保證頁面高度覆蓋整個視窗 */
+}
+
+/* Container styles */
+.container {
+    flex: 1; /* 撐滿主區域 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styles */
+.header {
+    background-color: #577399;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+
+.header .logo a {
+    text-decoration: none; /* 去除超連結底線 */
+    color: white;          /* 設置文字顏色 */
+    font-weight: bold;     /* 加粗字體 */
+    font-size: 1.5em;      /* 調整大小 */
+}
+
+.header .logo a:hover {
+    text-decoration: underline; /* 滑鼠懸停時加底線 */
+}
+
+/* Main content styles */
+.main-content {
+    flex: 1; /* 撐滿主區域 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 垂直水平居中 */
+    text-align: center;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* Welcome section */
+.main-content h1 {
+    color: #46688A;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.main-content p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Card container */
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Individual cards */
+.option-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.option-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.option-card button {
+    background-color: #577399;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.option-card button:hover {
+    background-color: #46688A;
+    transform: translateY(-3px);
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer styles */
+footer {
+    background-color: #BDD5EA;
+    text-align: center;
+    padding: 10px;
+    color: #577399;
+    font-size: 0.9em;
+    margin-top: auto; /* 確保 Footer 始終在頁面底部 */
+    width: 100%; /* 滿版 Footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}

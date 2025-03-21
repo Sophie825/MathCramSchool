@@ -1,0 +1,112 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F7F8FA;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 60px;
+    margin-left:auto;
+    margin-right:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.header {
+    background-color: #577399;
+    height: 50px; 
+    color: white;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 讓文字垂直置中 */
+    position: fixed; /* 固定在頁面頂部 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 佔滿寬度 */
+    z-index: 1000; /* 保持在最上層 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 增加陰影效果 */
+}
+
+.header .logo a {
+    text-decoration: none; /* 去除超連結底線 */
+    color: white;          /* 設置文字顏色 */
+    font-weight: bold;     /* 加粗字體 */
+    font-size: 1.5em;      /* 調整大小 */
+}
+
+.header .logo a:hover {
+    text-decoration: underline; /* 滑鼠懸停時加底線 */
+}
+
+
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.main-content h2 {
+    color: #5b739f;
+    font-size: 28px;
+    margin-bottom: 50px;
+}
+
+
+
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reservation-form input {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 250px;
+}
+
+
+.submit-btn {
+    background-color: #5b739f;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #486393;
+}
+
+
+.submit-btn a {
+    text-decoration: none; /* 移除下劃線 */
+    color: white; /* 設置文字顏色 */
+    display: block; /* 使整個選單項目可以點擊 */
+}
+
+
+footer {
+    background-color: #BDD5EA;
+    text-align: center;
+    padding: 10px;
+    color: #577399;
+    font-size: 0.9em;
+    width: 100%; /* 滿版 Footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: auto; /* 確保 Footer 固定在底部 */
+}
